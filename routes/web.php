@@ -17,7 +17,8 @@ use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 
-Route::get('/', 'NetellerController@index')->name('index');
-Route::get('/home', 'NetellerController@home')->name('name');
-Route::post('/add', 'NetellerController@add')->name('add');
-Route::get('/delete/{id}', 'NetellerController@delete')->name('delete');
+Route::get('/', 'PlaylistController@index')->name('index');
+Route::get('/home', 'PlaylistController@home')->name('name');
+Route::post('/add', 'PlaylistController@add')->name('add');
+Route::get('/delete/{id}', 'PlaylistController@delete')->name('delete');
+Route::post('/update', 'PlaylistController@update')->name('update');
