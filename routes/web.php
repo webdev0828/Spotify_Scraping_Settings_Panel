@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Auth;
 Auth::routes();
 
 Route::get('/', 'PlaylistController@index')->name('index');
-Route::get('/home', 'PlaylistController@home')->name('name');
+Route::get('/home', 'PlaylistController@index')->name('name');
 Route::post('/add', 'PlaylistController@add')->name('add');
 Route::get('/delete/{id}', 'PlaylistController@delete')->name('delete');
 Route::post('/update', 'PlaylistController@update')->name('update');

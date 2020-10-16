@@ -21,7 +21,7 @@ class PlaylistController extends Controller
             'detail' => $detail
         ];
 
-        return view('welcome', $data);
+        return view('home', $data);
     }
 
     public function add(Request $request) {        
@@ -62,6 +62,18 @@ class PlaylistController extends Controller
         $email = $request->email;
         $password = $request->password;
 
-        
+        $detail = Detail::first();
+        $detail->email = $email;
+        $detail->password = $password;
+        $detail->save();
+
+        $playlists = Playlist::all();
+        $detail = Detail::first();
+
+        $data = [
+            'playlists' => $playlists,
+            'detail' => $detail
+        ];
+        return back();
     }
 }

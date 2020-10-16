@@ -1,92 +1,89 @@
 <!doctype html>
-<html lang='{{ app()->getLocale() }}'>
+<html lang="{{ app()->getLocale() }}">
     <head>
-        <meta charset='utf-8'>
-        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Spotify Settings</title>
+        <title>Neteller MiddleMan</title>
 
         <!-- Fonts -->
-        <link href='https://fonts.googleapis.com/css?family=Raleway:100,600' rel='stylesheet' type='text/css'>        
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
+        <!-- Styles -->
         <style>
+            html, body {
+                background-color: #fff;
+                color: #636b6f;
+                font-family: 'Raleway', sans-serif;
+                font-weight: 100;
+                height: 100vh;
+                margin: 0;
+            }
+
+            .full-height {
+                height: 100vh;
+            }
+
+            .flex-center {
+                align-items: center;
+                display: flex;
+                justify-content: center;
+            }
+
+            .position-ref {
+                position: relative;
+            }
+
+            .top-right {
+                position: absolute;
+                right: 10px;
+                top: 18px;
+            }
+
             .content {
                 text-align: center;
-                margin-top: 120px;
             }
-            .table>thead>tr>th {
-                text-align: center;
+
+            .title {
+                font-size: 84px;
             }
-            .input-group {
-                display: flex;
-                width: 50%;
-                float: right;
+
+            .links > a {
+                color: #636b6f;
+                padding: 0 25px;
+                font-size: 12px;
+                font-weight: 600;
+                letter-spacing: .1rem;
+                text-decoration: none;
+                text-transform: uppercase;
             }
-            .btn.btn-success {
-                padding: 5px 40px;
-                letter-spacing: 1px;
-                border-bottom-left-radius: 0px;
-                border-top-left-radius: 0px;
-                margin-right: 30px;
-            }
-            table {
-                border-bottom: 1px solid;
-            }
-            .table {
-                padding-top: 30px;  
-            }
-            .table th {
-                background: #ebedef;
+
+            .m-b-md {
+                margin-bottom: 30px;
             }
         </style>
     </head>
-    <body>    
-        <div class='content'>
-            <div class='container'>                
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    {{ csrf_field() }}
-                </form>                
-                <form action='{{route("add")}}' method='post'>
-                    {{ csrf_field() }}
-                    <div class='input-group'>
-                        <input type='text' class='form-control' name='title' placeholder='Playlist Title' autocomplete='off'/>
-                        <input type='text' class='form-control' name='playlist_id' placeholder='Playlist ID' autocomplete='off'/>
-                        <button class='btn btn-success'>Add</button>                        
-                    </div>
-                </form>  
-                <form action='{{route("update")}}' method='post'>
-                    {{ csrf_field() }}
-                    <div class='input-group'>
-                        <input type='text' class='form-control' name='email' placeholder='Account Email' autocomplete='off' value='{{$detail->email}}' />
-                        <input type='text' class='form-control' name='password' placeholder='Account Password' autocomplete='off' value='{{$detail->password}}'/>
-                        <button class='btn btn-success'>Update</button>                        
-                    </div>
-                </form>          
-                <div class='table-responsive table table-hover'>
-                    <table id='dataTable' class='table table-hover'>
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Title</th>
-                                <th>Playlist ID</th>
-                                <th class='actions'>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                                foreach($playlists as $key => $playlist) { ?>
-                                    <tr>
-                                        <td>{{$key + 1}}</td>
-                                        <td>{{$playlist->title}}</td>
-                                        <td>{{$playlist->playlist}}</td>
-                                        <td><a href='/delete/{{$playlist->id}}'>Delete</a></td>
-                                    </tr>
-                            <?php } ?>
-                        </tbody>
-                    </table>
+    <body>
+        <div class="flex-center position-ref full-height" style="height: 30vh">
+            @if (Route::has('login'))
+                <div class="top-right links">
+                    @auth
+                        <a href="{{ url('/home') }}">Home</a>
+                    @else
+                        <a href="{{ route('login') }}">Login</a>
+                    @endauth
                 </div>
+            @endif
+        </div>          
+        <div class="content">
+            <div class="title m-b-md">
+                Spotify Admin Settings
+            </div>
+            <div class="links">
+                <a href="#">About Us</a>
+                <a href="#">Pricing</a>
+                <a href="#">Products</a>
             </div>
         </div>
     </body>

@@ -5,7 +5,7 @@
         <meta http-equiv='X-UA-Compatible' content='IE=edge'>
         <meta name='viewport' content='width=device-width, initial-scale=1'>
 
-        <title>Neteller MiddleMan</title>
+        <title>Spotify Settings</title>
 
         <!-- Fonts -->
         <link href='https://fonts.googleapis.com/css?family=Raleway:100,600' rel='stylesheet' type='text/css'>        
@@ -47,35 +47,41 @@
             <div class='container'>                
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     {{ csrf_field() }}
-                </form>
+                </form>                
                 <form action='{{route("add")}}' method='post'>
                     {{ csrf_field() }}
                     <div class='input-group'>
-                        <input type='text' class='form-control' name='host_url' autocomplete='off'/>
-                        <button class='btn btn-success'>Add</button>
-                        <a href="{{ route('logout') }}" class='btn btn-danger'
-                            onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();">
-                            Logout
-                        </a>
+                        <input type='text' class='form-control' name='title' placeholder='Playlist Title' autocomplete='off'/>
+                        <input type='text' class='form-control' name='playlist_id' placeholder='Playlist ID' autocomplete='off'/>
+                        <button class='btn btn-success'>Add</button>                        
                     </div>
-                </form>            
+                </form>  
+                <form action='{{route("update")}}' method='post'>
+                    {{ csrf_field() }}
+                    <div class='input-group'>
+                        <input type='text' class='form-control' name='email' placeholder='Account Email' autocomplete='off' value='{{$detail->email}}' />
+                        <input type='text' class='form-control' name='password' placeholder='Account Password' autocomplete='off' value='{{$detail->password}}'/>
+                        <button class='btn btn-success'>Update</button>                        
+                    </div>
+                </form>          
                 <div class='table-responsive table table-hover'>
                     <table id='dataTable' class='table table-hover'>
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Payment Hub</th>
+                                <th>Title</th>
+                                <th>Playlist ID</th>
                                 <th class='actions'>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
-                                foreach($hosts as $key => $host) { ?>
+                                foreach($playlists as $key => $playlist) { ?>
                                     <tr>
                                         <td>{{$key + 1}}</td>
-                                        <td>{{$host->url}}</td>
-                                        <td><a href='/delete/{{$host->id}}'>Delete</a></td>
+                                        <td>{{$playlist->title}}</td>
+                                        <td>{{$playlist->playlist}}</td>
+                                        <td><a href='/delete/{{$playlist->id}}'>Delete</a></td>
                                     </tr>
                             <?php } ?>
                         </tbody>
