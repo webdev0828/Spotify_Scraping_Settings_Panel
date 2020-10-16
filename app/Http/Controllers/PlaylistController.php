@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
 use App\Playlist;
-use App\Transaction;
+use App\Detail;
 
 class PlaylistController extends Controller
 {
@@ -13,10 +13,12 @@ class PlaylistController extends Controller
     public $client;
 
     public function index() {
+        $detail = Detail::first();
         $playlists = Playlist::all();
 
         $data = [
-            'playlists' => $playlists
+            'playlists' => $playlists,
+            'detail' => $detail
         ];
 
         return view('welcome', $data);
@@ -33,8 +35,11 @@ class PlaylistController extends Controller
         $result = Playlist::create(['title' => $title,'playlist' => $playlist_id]);
         
         $playlists = Playlist::all();
+        $detail = Detail::first();
+
         $data = [
-            'playlists' => $playlists
+            'playlists' => $playlists,
+            'detail' => $detail
         ];
         return back();
     }
@@ -43,10 +48,20 @@ class PlaylistController extends Controller
         $id = $request->id;
         $result = Playlist::whereId($id)->delete();
         
-        $playlists = Playlist::all();        
+        $playlists = Playlist::all();
+        $detail = Detail::first();
+
         $data = [
-            'playlists' => $playlists
+            'playlists' => $playlists,
+            'detail' => $detail
         ];
         return back();
+    }
+
+    public function update(Request $request) {
+        $email = $request->email;
+        $password = $request->password;
+
+        
     }
 }

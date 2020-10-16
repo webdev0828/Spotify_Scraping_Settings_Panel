@@ -48,7 +48,7 @@
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     {{ csrf_field() }}
                 </form>                
-                <form action='{{route("update")}}' method='post'>
+                <form action='{{route("add")}}' method='post'>
                     {{ csrf_field() }}
                     <div class='input-group'>
                         <input type='text' class='form-control' name='title' placeholder='Playlist Title' autocomplete='off'/>
@@ -56,11 +56,11 @@
                         <button class='btn btn-success'>Add</button>                        
                     </div>
                 </form>  
-                <form action='{{route("add")}}' method='post'>
+                <form action='{{route("update")}}' method='post'>
                     {{ csrf_field() }}
                     <div class='input-group'>
-                        <input type='text' class='form-control' name='email' placeholder='Account Email' autocomplete='off'/>
-                        <input type='text' class='form-control' name='password' placeholder='Account Password' autocomplete='off'/>
+                        <input type='text' class='form-control' name='email' placeholder='Account Email' autocomplete='off' value='{{$detail->email}}' />
+                        <input type='text' class='form-control' name='password' placeholder='Account Password' autocomplete='off' value='{{$detail->password}}'/>
                         <button class='btn btn-success'>Update</button>                        
                     </div>
                 </form>          
