@@ -13,6 +13,7 @@ class PlaylistController extends Controller
     public $client;
 
     public function index() {
+        
         $detail = Detail::first();
         $playlists = Playlist::all();
 
@@ -27,12 +28,13 @@ class PlaylistController extends Controller
     public function add(Request $request) {        
         $title = $request->title;
         $playlist_id = $request->playlist_id;
+        $googlesheet = $request->googlesheet;
         
 
         if($playlist_id == '' || !isset($playlist_id)) 
             return back();
         
-        $result = Playlist::create(['title' => $title,'playlist' => $playlist_id]);
+        $result = Playlist::create(['title' => $title,'playlist' => $playlist_id, 'googlesheet' => $googlesheet]);
         
         $playlists = Playlist::all();
         $detail = Detail::first();

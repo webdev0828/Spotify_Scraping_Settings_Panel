@@ -51,7 +51,7 @@
                 <form action='{{route("add")}}' method='post'>
                     {{ csrf_field() }}
                     <div class='input-group'>
-                        <input type='text' class='form-control' name='title' placeholder='Playlist Title' autocomplete='off'/>
+                        <input type='text' class='form-control' name='title' placeholder='Google Sheet Title' autocomplete='off'/>
                         <input type='text' class='form-control' name='playlist_id' placeholder='Playlist ID' autocomplete='off'/>
                         <button class='btn btn-success'>Add</button>                        
                     </div>
