@@ -6,6 +6,7 @@
         <meta name='viewport' content='width=device-width, initial-scale=1'>
 
         <title>Spotify Settings</title>
+        <link rel="shortcut icon" type="image/png" href="/images/spotify-icon.png">
 
         <!-- Fonts -->
         <link href='https://fonts.googleapis.com/css?family=Raleway:100,600' rel='stylesheet' type='text/css'>        
